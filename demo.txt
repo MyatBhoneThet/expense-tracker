@@ -1,0 +1,54 @@
+routes -> controllers -> models -> database
+          ↑
+     middleware (optional)
+
+(Client HTTP Request)
+       │
+       ▼
+ ┌─────────────┐
+ │   ROUTE     │
+ │ authRoutes  │
+ └─────────────┘
+       │
+       ▼
+ ┌─────────────┐
+ │ MIDDLEWARE  │
+ │  (optional) │
+ │ e.g. protect│
+ └─────────────┘
+       │
+       ▼
+ ┌────────────────┐
+ │ CONTROLLER     │
+ │ authController │
+ └────────────────┘
+       │
+       ▼
+ ┌─────────────┐
+ │   MODEL     │
+ │  User.find  │
+ │ (Mongoose)  │
+ └─────────────┘
+       │
+       ▼
+(MongoDB Database)
+       │
+       ▼
+ ┌─────────────┐
+ │ CONTROLLER  │
+ │ formats &   │
+ │ sends res   │
+ └─────────────┘
+       │
+       ▼
+(Client gets JSON response)
+
+| 📁 Folder        | 💡 What it does in 1 line                      |
+| ---------------- | ---------------------------------------------- |
+| **routes/**      | Maps HTTP methods & URLs to controller funcs.  |
+| **controllers/** | Holds the main business logic for requests.    |
+| **models/**      | Defines data schemas & talks to MongoDB.       |
+| **middleware/**  | Runs checks (like JWT) before hitting logic.   |
+| **config/**      | Holds setup like DB connection files.          |
+| **.env**         | Stores your private config (DB URI, secrets).  |
+| **server.js**    | Starts the Express app & ties it all together. |
